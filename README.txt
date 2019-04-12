@@ -1,5 +1,5 @@
 ===========
-annoPipeline - a gene annotation pipeline
+annoPipeline - an API-enabled gene annotation pipeline
 ===========
 
 Interview Test uses APIs from mygene.info and entrez to annotate a given list of genes. 
