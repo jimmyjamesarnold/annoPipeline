@@ -1,0 +1,11 @@
+name: REST_test
+channels:
+- defaults
+- conda-forge
+dependencies:
+- python
+- matplotlib
+- numpy
+- seaborn
+- pandas
+- jupyter
