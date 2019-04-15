@@ -6,3 +6,6 @@ InterviewTest.egg-info/dependency_links.txt
 InterviewTest.egg-info/requires.txt
 InterviewTest.egg-info/top_level.txt
 annoPipeline/__init__.py
+annoPipeline/addBibs.py
+annoPipeline/getAnno.py
+annoPipeline/queryGenes.py
