@@ -1,5 +1,3 @@
-import requests
-
 def queryGenes(geneList):
     """Takes list of gene symbols and returns list of dicts of 1st query result for each gene from mygene.info.
     Parses the returned json for the first returned hit.
