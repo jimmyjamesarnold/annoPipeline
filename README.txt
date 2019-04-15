@@ -2,9 +2,16 @@
 annoPipeline - an API-enabled gene annotation pipeline
 ===========
 
-Interview Test uses APIs from mygene.info and entrez to annotate a given list of genes. 
+annoPipeline uses APIs from mygene.info and entrez to annotate a given list of genes. 
 Currently generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliographic info for up to 5 publications in pubmed where the gene was mentioned. 
 You might find it useful for tasks involving analyzing publication trends or finding influential PIs for a given gene. 
+
+To install:
+
+Download or clone the repo and run:
+python setup.py install
+
+
 Typical usage often looks like this::
 
     #!/usr/bin/env python
