@@ -102,15 +102,3 @@ def annoPipeline(geneList):
     dfb = addBibs(df)  # Task 3
     print('Tasks Completed.')
     return dfb
-
-
-interact = input("Would you like help? [y]/[n]")
-if interact == 'n':
-    print('OK')
-else: check = input("Do you have a list of genes already? [y]/[n]")
-    if check == 'n':
-        raw = input("Please enter human gene symbol(s), separating with commas: ")
-        geneList = [x.strip() for x in raw.split(',')]
-        annoPipeline(geneList)
-    else:
-        print('OK, annotate using queryGenes or annoPipeline')
