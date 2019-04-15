@@ -2,19 +2,20 @@
 annoPipeline - an API-enabled gene annotation pipeline
 ===========
 
-annoPipeline uses APIs from mygene.info and entrez to annotate a given list of genes. 
-Currently generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliographic info for up to 5 publications in pubmed where the gene was mentioned. 
+annoPipeline uses APIs from mygene.info and entrez to annotate a given list of genes.
+
+Generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliographic info for up to 5 publications in pubmed where the gene was mentioned. 
 You might find it useful for tasks involving analyzing publication trends or finding influential PIs for a given gene. 
 
-To install:
+To Install:
+-----------
+Download or clone the repo from github.
+Then, in the annoPipeline directory, run:
 
-Download or clone the repo in the annoPipeline directory, run:
 python setup.py install
 
 - any missing dependencies will be installed, may take a few seconds
 
-Then, in python run:
-from annoPipeline import *
 
 See below for example use cases:
 
@@ -27,7 +28,7 @@ Typical usage often looks like this::
     # define a list of genes you would like annotated
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
-    # annoPipeline will execute full annotation pipeline. Will save annotations as Excel.
+    # annoPipeline will execute full annotation pipeline (see individual functions below). 
     df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
 
 
@@ -85,9 +86,7 @@ Use addBibs() like this::
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
     l1 = queryGenes(geneList)
     l2 = getAnno(l1)
-    l3 = addBibs(l2)
-
-    # will return df with genes and up to 5 generifs from mygene.info
+    l3 = addBibs(l2) # will return df with genes and up to 5 generifs from mygene.info
      
 
     
