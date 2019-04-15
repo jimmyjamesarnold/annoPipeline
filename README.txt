@@ -14,7 +14,17 @@ Then, in the annoPipeline directory, run:
 
 python setup.py install
 
-- any missing dependencies will be installed, may take a few seconds
+- any missing dependencies will be installed, may take a few seconds.
+
+Reqirements:
+------------
+Written for use with Python 3.7, not tested on other versions.
+In addition to time and json, annoPipeline requires:
+numpy >= 1.16.2
+pandas >= 0.24.2
+Biopython >= 1.73
+openpyxl >= 2.6.1
+requests >= 2.21.0
 
 
 See below for example use cases:
