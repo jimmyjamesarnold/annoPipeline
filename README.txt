@@ -11,17 +11,22 @@ To install:
 Download or clone the repo and run:
 python setup.py install
 
+then, from python run:
+from annoPipeline import *
+
+To 
+
 
 Typical usage often looks like this::
 
     #!/usr/bin/env python
 
-    import annoPipeline
+    from annoPipeline import *
 
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
-    # annoPipeline will execute full pipeline
-    bib_df = annoPipeline(geneList) # returns df with annotations for gene and bibliographic info.
+    # annoPipeline will execute full annotation pipeline. Will save annotations as Excel.
+    bib_df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
 
 
 Problems Solved in 0.1
@@ -32,16 +37,16 @@ Task 1
 1.  From the MyGeneInfo API, use the “Gene query service" GET method to return details on the following GENE symbols, filtered for species, “human":   CDK2, FGFR1, SLC6A4
 2.  From the returned json, parse out the “name", “symbol" and “entrezgene" values and print to screen
 
-Use queryGene() like this::
+Use queryGenes() like this::
 
     #!/usr/bin/env python
 
-    import annoPipeline.queryGenes as queryGenes
+    from annoPipeline import *
 
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
     # will return list of dicts where keys are default mygene fields (symbol,name,taxid,entrezgene,ensemblgene)
-    queryRes = qr(geneList) 
+    queryRes = queryGenes(geneList) 
 
 
 Task 2: 
@@ -54,18 +59,15 @@ Use getAnno() and mergeWrite() like this::
 
     #!/usr/bin/env python
 
-    import annoPipeline.queryRes as queryGenes
-    import annoPipeline.getAnno as getAnno
-    import annoPipeline.mergeWrite as mergeWrite
+    from annoPipeline import *
 
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-    queryRes = queryGene(geneList)
+    queryRes = queryGenes(geneList)
 
-    # will return df with genes and up to 5 generifs from mygene.info
-    pubc = getAnno(queryRes) 
-
-    # will return collated pubc merged with queryResult, writes Excel file with geneList input separated by '_'. 
-    df = mergeWrite(queryRes, pubc) 
+    # returns pandas df with genes and up to 5 generifs from mygene.info
+    # default for saveExcel is False, if you want to write output to Excel must state True
+    # if True, saves Excel file with geneList symbols separated by '_'. 
+    df = getAnno(queryRes, saveExcel=True) # saveExcel defaults False
 
 
 Task 3:
@@ -76,21 +78,16 @@ Use addBibs() like this::
 
     #!/usr/bin/env python
 
-    import annoPipeline.queryRes as queryGenes
-    import annoPipeline.getAnno as getAnno
-    import annoPipeline.mergeWrite as mergeWrite
-    import annoPipeline.addBibs as addBibs
+    from annoPipeline import *
 
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-    queryRes = queryGene(geneList)
-    pubc = getAnno(queryRes)
-    df = mergeWrite(queryRes, pubc)
-
+    queryRes = queryGenes(geneList)
+    df = getAnno(queryRes)
     dfb = addBibs(df)
 
     # will return df with genes and up to 5 generifs from mygene.info
      
 
-    # will return collated pubc merged with queryResult, writes Excel file with geneList input separated by '_'. 
+    
      
 
