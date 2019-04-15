@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='InterviewTest',
-    version='0.1dev',
+    version='0.1',
     author='J. Arnold',
     author_email='jimmyjamesarnold@gmail.com',
     packages=['annoPipeline',],
