@@ -1,3 +1,8 @@
+import numpy as np
+import pandas as pd
+from Bio import Entrez
+import time
+
 def addBibs(df):
     """Takes output from mergeWrite and adds cols for corresponding pubmed features. 
     Parses Entrez esummary pubmed results for desired bibliographic features.

@@ -8,14 +8,15 @@ You might find it useful for tasks involving analyzing publication trends or fin
 
 To install:
 
-Download or clone the repo and run:
+Download or clone the repo in the annoPipeline directory, run:
 python setup.py install
 
-then, from python run:
+- any missing dependencies will be installed, may take a few seconds
+
+Then, in python run:
 from annoPipeline import *
 
-To 
-
+See below for example use cases:
 
 Typical usage often looks like this::
 
@@ -23,10 +24,11 @@ Typical usage often looks like this::
 
     from annoPipeline import *
 
+    # define a list of genes you would like annotated
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
     # annoPipeline will execute full annotation pipeline. Will save annotations as Excel.
-    bib_df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
+    df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
 
 
 Problems Solved in 0.1
@@ -45,8 +47,8 @@ Use queryGenes() like this::
 
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
-    # will return list of dicts where keys are default mygene fields (symbol,name,taxid,entrezgene,ensemblgene)
-    queryRes = queryGenes(geneList) 
+    # returns list of dicts where keys are default mygene fields (symbol,name,taxid,entrezgene,ensemblgene)
+    l1 = queryGenes(geneList) 
 
 
 Task 2: 
@@ -62,12 +64,12 @@ Use getAnno() and mergeWrite() like this::
     from annoPipeline import *
 
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-    queryRes = queryGenes(geneList)
+    l1 = queryGenes(geneList)
 
     # returns pandas df with genes and up to 5 generifs from mygene.info
     # default for saveExcel is False, if you want to write output to Excel must state True
     # if True, saves Excel file with geneList symbols separated by '_'. 
-    df = getAnno(queryRes, saveExcel=True) # saveExcel defaults False
+    l2 = getAnno(l1, saveExcel=True) # saveExcel defaults False
 
 
 Task 3:
@@ -81,9 +83,9 @@ Use addBibs() like this::
     from annoPipeline import *
 
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-    queryRes = queryGenes(geneList)
-    df = getAnno(queryRes)
-    dfb = addBibs(df)
+    l1 = queryGenes(geneList)
+    l2 = getAnno(l1)
+    l3 = addBibs(l2)
 
     # will return df with genes and up to 5 generifs from mygene.info
      

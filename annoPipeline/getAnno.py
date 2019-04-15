@@ -1,3 +1,8 @@
+import numpy as np
+import pandas as pd
+import requests
+import json
+
 def getAnno(queryResult, saveExcel=False):
     """Takes output of queryGenes() 
     Iterates queryGenes list, parses EntrezID and passes to mygene.info annotation service. 

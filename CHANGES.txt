@@ -1,1 +1,2 @@
 v0.1dev, 04/12/2019 -- Initial release.
+v0.1, 04/15/2019 -- first functional release.

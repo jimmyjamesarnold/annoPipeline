@@ -5,6 +5,7 @@ import json
 import time
 from Bio import Entrez
 
+
 def queryGenes(geneList):
     """Takes list of gene symbols and returns list of dicts of 1st query result for each gene from mygene.info.
     Parses the returned json for the first returned hit.
@@ -22,6 +23,7 @@ def queryGenes(geneList):
         ls.append(res)
     print('Done.')
     return ls
+
 
 def getAnno(queryResult, saveExcel=False):
     """Takes output of queryGenes() 
@@ -64,6 +66,7 @@ def getAnno(queryResult, saveExcel=False):
     print('Done.')
     return pbmds
 
+
 def addBibs(df):
     """Takes output from mergeWrite and adds cols for corresponding pubmed features. 
     Parses Entrez esummary pubmed results for desired bibliographic features.
@@ -94,6 +97,7 @@ def addBibs(df):
     print('Done.')
     return pd.merge(df, pd.DataFrame(ls).astype({'Id': 'int64'}),
                     left_on='pmid', right_on='Id').drop('Id', axis=1)
+
 
 def annoPipeline(geneList):
     """Given list of gene symbols, annotates genes with gene and bibliographic info. 
