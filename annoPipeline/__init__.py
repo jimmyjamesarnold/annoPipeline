@@ -3,9 +3,6 @@ import pandas as pd
 import requests
 import json
 from Bio import Entrez
-import annoPipeline.queryGenes as queryGenes
-import annoPipeline.getAnno as getAnno
-import annoPipeline.addBibs as addBibs
 
 def annoPipeline(geneList):
     """Given list of gene symbols, annotates genes with gene and bibliographic info. 
