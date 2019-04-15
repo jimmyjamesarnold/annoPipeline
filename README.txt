@@ -77,7 +77,8 @@ Use getAnno() and mergeWrite() like this::
     geneList = ['CDK2', 'FGFR1', 'SLC6A4']
     l1 = queryGenes(geneList)
 
-    # returns pandas df with genes and up to 5 generifs from mygene.info
+    # returns pandas df with genes and up to 5 generifs from mygene.info. 
+    # *** Instead of generifs column, this produces two columns: pmid and text, which are extracted from the original generif dict.
     # default for saveExcel is False, if you want to write output to Excel must state True
     # if True, saves Excel file with geneList symbols separated by '_'. 
     l2 = getAnno(l1, saveExcel=True) # saveExcel defaults False
