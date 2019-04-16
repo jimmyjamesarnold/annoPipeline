@@ -10,7 +10,6 @@ Designed to be useful for tasks such as:
 * identifying influential PIs for a given gene network. 
 
 ## Reqirements:
-
 * Written for use with Python 3.7, not tested on other versions.
 
 * *annoPipeline* requires:
@@ -21,19 +20,20 @@ Designed to be useful for tasks such as:
     - requests >= 2.21.0
 
 ## To Install:
+Required dependencies will be installed if missing, may take a few seconds.
+
+### Recommended Method:
 ```
 pip install annoPipeline
 ```
-
-Or clone the repo from github.
-Then, in the annoPipeline directory, run:
+### Alternative:
+1. Download / Clone the github repo.
+2. Then, in the annoPipeline directory, run:
 ```
 python setup.py install
 ```
-Required dependencies will be installed if missing, may take a few seconds.
 
 ## Example usage:
-
 Execute the full annotation pipeline on a list of gene symbols like this:
 ```python
 import annoPipeline as ap
@@ -53,7 +53,6 @@ import annoPipeline as ap
 
 df = ap.annoPipeline(['CDK2']) # for single gene queries still include [] - will be fixed in later version
 ```
-
 
 ## v0.0.1 Functionality
 
