@@ -34,6 +34,7 @@ def getAnno(queryResult, saveExcel=False):
                   'entrezgene': 'entrez_id'}, axis=1, inplace=True)
     cols = ['gene_symbol', 'gene_name', 'entrez_id', 'pmid', 'generif_text']
     pbmds = pbmds[cols]
+
     # save pbmds to Excel
     if saveExcel:
         print('')

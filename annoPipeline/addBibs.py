@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
-from Bio import Entrez
 import time
+from Bio import Entrez
 
 def addBibs(df):
     """Takes output from mergeWrite and adds cols for corresponding pubmed features. 
@@ -28,7 +28,8 @@ def addBibs(df):
                              for i in bib_feats if i in record[0]}))
         time.sleep(0.5) # pause 1 sec to avoid spamming.
 
-    # merge with df, cast dtypes for merging and time series
+    # merge with df, cast dtypes for merging.
+    # idea for future, add 'PubDate': 'datetime64' to astype for time series. Some pubs have weird timestr values, need to work on solution.
     print('Done.')
-    return pd.merge(df, pd.DataFrame(ls).astype({'Id': 'int64', 'PubDate': 'datetime64'}),
+    return pd.merge(df, pd.DataFrame(ls).astype({'Id': 'int64'}),
                     left_on='pmid', right_on='Id').drop('Id', axis=1)

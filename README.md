@@ -33,15 +33,15 @@ any missing dependencies will be installed, may take a few seconds.
 
 ## Example usage:
 
-Execute the full pipeline like this:
+Execute the full annotation pipeline like this:
 ```python
-from annoPipeline import *
+import annoPipeline as ap
 
 # define a list of genes you would like annotated
 geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
 # annoPipeline will execute full annotation pipeline (see individual functions below). 
-df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
+df = ap.annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
 ```
 
 ## v0.0.1 Functionality
@@ -51,13 +51,12 @@ df = annoPipeline(geneList) # returns pandas df with annotations for gene and bi
 2.  From the returned json, parse out the “name", “symbol" and “entrezgene" values and print to screen
 
 Use queryGenes() like this::
-
 ```python
-from annoPipeline import *
+import annoPipeline as ap
 
 geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
-l1 = queryGenes(geneList) # returns list of dicts where keys are default mygene fields (symbol,name,taxid,entrezgene,ensemblgene)
+l1 = ap.queryGenes(geneList) # returns list of dicts where keys are default mygene fields (symbol,name,taxid,entrezgene,ensemblgene)
 ```
 
 ### Task 2: 
@@ -67,11 +66,11 @@ l1 = queryGenes(geneList) # returns list of dicts where keys are default mygene 
 
 Use getAnno() like this::
 ```python
-from annoPipeline import *
+import annoPipeline as ap
 
 geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-l1 = queryGenes(geneList)
-l2 = getAnno(l1, saveExcel=True) # saveExcel defaults False
+l1 = ap.queryGenes(geneList)
+l2 = ap.getAnno(l1, saveExcel=True) # saveExcel defaults False
 ```
  - returns pandas df with genes and up to 5 generifs from mygene.info. 
  - defaults to **saveExcel=False**, if you want to write output to Excel must state **True**
@@ -82,12 +81,12 @@ l2 = getAnno(l1, saveExcel=True) # saveExcel defaults False
 
 Use addBibs() like this::
 ```python
-from annoPipeline import *
+import annoPipeline as ap
 
 geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-l1 = queryGenes(geneList)
-l2 = getAnno(l1)
-l3 = addBibs(l2) # will return df with genes and up to 5 generifs from mygene.info
+l1 = ap.queryGenes(geneList)
+l2 = ap.getAnno(l1)
+l3 = ap.addBibs(l2) # will return df with genes and up to 5 generifs from mygene.info
 ```  
 * Currently returns the following bibliographic information when available:
     * PubDate
