@@ -1,103 +1,95 @@
 # annoPipeline - an API-enabled gene annotation pipeline
 
-annoPipeline uses APIs from mygene.info and entrez to annotate a given list of genes.
+annoPipeline uses APIs from [mygene.info](http://mygene.info/) and [Entrez esummary](https://dataguide.nlm.nih.gov/eutilities/utilities.html#esummary) to annotate a user-provided list of gene symbols.
 
-Generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliographic info for up to 5 publications in pubmed where the gene was mentioned. 
-You might find it useful for tasks involving analyzing publication trends or finding influential PIs for a given gene. 
+Generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliographic info for up to 5 pubmed publications where a functional reference was provided (more about functional references at [GeneRIF](https://www.ncbi.nlm.nih.gov/gene/about-generif)).
+
+You might find it useful for tasks identifying relevant publications for a given function, analyzing publications trends for genes belonging to a common pathway, or identifying influential PIs for a given gene network. 
 
 ## To Install:
 
-Download or clone the repo from github.
+pip install annoPipeline
+
+Or clone the repo from github.
 Then, in the annoPipeline directory, run:
 
 python setup.py install
 
-- any missing dependencies will be installed, may take a few seconds.
+any missing dependencies will be installed, may take a few seconds.
 
-Reqirements:
+## Reqirements:
 
 Written for use with Python 3.7, not tested on other versions.
-In addition to time and json, annoPipeline requires:
-numpy >= 1.16.2
-pandas >= 0.24.2
-Biopython >= 1.73
-openpyxl >= 2.6.1
-requests >= 2.21.0
+*annoPipeline* requires:
+- numpy >= 1.16.2
+- pandas >= 0.24.2
+- Biopython >= 1.73
+- openpyxl >= 2.6.1
+- requests >= 2.21.0
 
 
 See below for example use cases:
 
-Typical usage often looks like this::
+Execute the full pipeline like this:
+```python
+from annoPipeline import *
 
-    #!/usr/bin/env python
+# define a list of genes you would like annotated
+geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
-    from annoPipeline import *
+# annoPipeline will execute full annotation pipeline (see individual functions below). 
+df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
+```
 
-    # define a list of genes you would like annotated
-    geneList = ['CDK2', 'FGFR1', 'SLC6A4']
+## Functions available in 0.0.1
 
-    # annoPipeline will execute full annotation pipeline (see individual functions below). 
-    df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
-
-
-Problems Solved in 0.1
-
-
-Task 1
--------
-1.  From the MyGeneInfo API, use the “Gene query service" GET method to return details on the following GENE symbols, filtered for species, “human":   CDK2, FGFR1, SLC6A4
+### Task 1:
+1.  From the MyGeneInfo API, use the “Gene query service" GET method to return details on a given list of human gene symbols.
 2.  From the returned json, parse out the “name", “symbol" and “entrezgene" values and print to screen
 
 Use queryGenes() like this::
 
-    #!/usr/bin/env python
+```python
+from annoPipeline import *
 
-    from annoPipeline import *
+geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 
-    geneList = ['CDK2', 'FGFR1', 'SLC6A4']
+l1 = queryGenes(geneList) # returns list of dicts where keys are default mygene fields (symbol,name,taxid,entrezgene,ensemblgene)
+```
 
-    # returns list of dicts where keys are default mygene fields (symbol,name,taxid,entrezgene,ensemblgene)
-    l1 = queryGenes(geneList) 
-
-
-Task 2: 
--------
+### Task 2: 
 1. 	Using the appropriate identifier from the above result, send a query to the MyGeneInfo “Gene annotation services" method for each gene
 2.	From the resulting json, collate up to 5 generif descriptions per gene
 3.	Write the results to an Excel spreadsheet with columns: gene_symbol, gene_name, entrez_id, generifs
 
-Use getAnno() and mergeWrite() like this::
+Use getAnno() like this::
+```python
+from annoPipeline import *
 
-    #!/usr/bin/env python
+geneList = ['CDK2', 'FGFR1', 'SLC6A4']
+l1 = queryGenes(geneList)
+l2 = getAnno(l1, saveExcel=True) # saveExcel defaults False
+```
+ - returns pandas df with genes and up to 5 generifs from mygene.info. 
+ - defaults to **saveExcel=False**, if you want to write output to Excel must state **True**
+- if **True**, names Excel file as geneList symbols separated by '_'. 
 
-    from annoPipeline import *
-
-    geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-    l1 = queryGenes(geneList)
-
-    # returns pandas df with genes and up to 5 generifs from mygene.info. 
-    # *** Instead of generifs column, this produces two columns: pmid and text, which are extracted from the original generif dict.
-    # default for saveExcel is False, if you want to write output to Excel must state True
-    # if True, saves Excel file with geneList symbols separated by '_'. 
-    l2 = getAnno(l1, saveExcel=True) # saveExcel defaults False
-
-
-Task 3:
--------
+### Task 3:
 1.  Use the Pubmed IDs associated with the above generif content to extract additional bibliographic information.
 
 Use addBibs() like this::
+```python
+from annoPipeline import *
 
-    #!/usr/bin/env python
-
-    from annoPipeline import *
-
-    geneList = ['CDK2', 'FGFR1', 'SLC6A4']
-    l1 = queryGenes(geneList)
-    l2 = getAnno(l1)
-    l3 = addBibs(l2) # will return df with genes and up to 5 generifs from mygene.info
-     
-
-    
-     
-
+geneList = ['CDK2', 'FGFR1', 'SLC6A4']
+l1 = queryGenes(geneList)
+l2 = getAnno(l1)
+l3 = addBibs(l2) # will return df with genes and up to 5 generifs from mygene.info
+```  
+* Currently returns the following bibliographic information when available:
+    * PubDate
+    * Source
+    * Title
+    * LastAuthor
+    * DOI
+    * PmcRefCount

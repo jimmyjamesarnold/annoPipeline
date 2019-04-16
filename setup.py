@@ -3,19 +3,21 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setup(
+setuptools.setup(
     name='annoPipeline',
     version='0.0.1',
     author='Jim Arnold',
     author_email='jimmyjamesarnold@gmail.com',
     packages=setuptools.find_packages(),
     url='https://github.com/jimmyjamesarnold/annoPipeline',
-    scripts=[],
-    description='API-enabled Gene Annotation.',
+    description='API-enabled Gene Annotation',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    license='Creative Commons Attribution-Noncommercial-Share Alike license',
+    license='MIT',
     classifiers=[
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Biologists',
+        'License :: OSI Approved :: MIT License',
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
@@ -25,5 +27,5 @@ setup(
         "Biopython >= 1.73",
         "openpyxl >= 2.6.1",
         "requests >= 2.21.0",
-    ],
+    ]
 )
