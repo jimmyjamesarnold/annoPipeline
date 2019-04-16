@@ -7,14 +7,15 @@ Generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliogr
 You might find it useful for tasks identifying relevant publications for a given function, analyzing publications trends for genes belonging to a common pathway, or identifying influential PIs for a given gene network. 
 
 ## To Install:
-
+```
 pip install annoPipeline
+```
 
 Or clone the repo from github.
 Then, in the annoPipeline directory, run:
-
+```
 python setup.py install
-
+```
 any missing dependencies will be installed, may take a few seconds.
 
 ## Reqirements:
