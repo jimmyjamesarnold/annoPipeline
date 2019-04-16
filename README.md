@@ -11,13 +11,14 @@ Designed to be useful for tasks such as:
 
 ## Reqirements:
 
-Written for use with Python 3.7, not tested on other versions.
-*annoPipeline* requires:
-- numpy >= 1.16.2
-- pandas >= 0.24.2
-- Biopython >= 1.73
-- openpyxl >= 2.6.1
-- requests >= 2.21.0
+* Written for use with Python 3.7, not tested on other versions.
+
+* *annoPipeline* requires:
+    - numpy >= 1.16.2
+    - pandas >= 0.24.2
+    - Biopython >= 1.73
+    - openpyxl >= 2.6.1
+    - requests >= 2.21.0
 
 ## To Install:
 ```
@@ -29,7 +30,7 @@ Then, in the annoPipeline directory, run:
 ```
 python setup.py install
 ```
-any missing dependencies will be installed, may take a few seconds.
+Required dependencies will be installed if missing, may take a few seconds.
 
 ## Example usage:
 
