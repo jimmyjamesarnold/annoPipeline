@@ -1,10 +1,23 @@
 # annoPipeline - an API-enabled gene annotation pipeline
 
-annoPipeline uses APIs from [mygene.info](http://mygene.info/) and [Entrez esummary](https://dataguide.nlm.nih.gov/eutilities/utilities.html#esummary) to annotate a user-provided list of gene symbols.
+***annoPipeline*** uses APIs from [mygene.info](http://mygene.info/) and [Entrez esummary](https://dataguide.nlm.nih.gov/eutilities/utilities.html#esummary) to annotate a user-provided list of gene symbols.
 
 Generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliographic info for up to 5 pubmed publications where a functional reference was provided (more about functional references at [GeneRIF](https://www.ncbi.nlm.nih.gov/gene/about-generif)).
 
-You might find it useful for tasks identifying relevant publications for a given function, analyzing publications trends for genes belonging to a common pathway, or identifying influential PIs for a given gene network. 
+Designed to be useful for tasks such as:
+* identifying relevant publications for a given function
+* analyzing publications trends for genes belonging to a common pathway
+* identifying influential PIs for a given gene network. 
+
+## Reqirements:
+
+Written for use with Python 3.7, not tested on other versions.
+*annoPipeline* requires:
+- numpy >= 1.16.2
+- pandas >= 0.24.2
+- Biopython >= 1.73
+- openpyxl >= 2.6.1
+- requests >= 2.21.0
 
 ## To Install:
 ```
@@ -18,18 +31,7 @@ python setup.py install
 ```
 any missing dependencies will be installed, may take a few seconds.
 
-## Reqirements:
-
-Written for use with Python 3.7, not tested on other versions.
-*annoPipeline* requires:
-- numpy >= 1.16.2
-- pandas >= 0.24.2
-- Biopython >= 1.73
-- openpyxl >= 2.6.1
-- requests >= 2.21.0
-
-
-See below for example use cases:
+## Example usage:
 
 Execute the full pipeline like this:
 ```python
@@ -42,7 +44,7 @@ geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 df = annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
 ```
 
-## Functions available in 0.0.1
+## v0.0.1 Functionality
 
 ### Task 1:
 1.  From the MyGeneInfo API, use the “Gene query service" GET method to return details on a given list of human gene symbols.
