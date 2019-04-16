@@ -1,14 +1,12 @@
-===========
-annoPipeline - an API-enabled gene annotation pipeline
-===========
+# annoPipeline - an API-enabled gene annotation pipeline
 
 annoPipeline uses APIs from mygene.info and entrez to annotate a given list of genes.
 
 Generates a pandas DataFrame with gene symbol, gene name, EntrezID, and bibliographic info for up to 5 publications in pubmed where the gene was mentioned. 
 You might find it useful for tasks involving analyzing publication trends or finding influential PIs for a given gene. 
 
-To Install:
------------
+## To Install:
+
 Download or clone the repo from github.
 Then, in the annoPipeline directory, run:
 
@@ -17,7 +15,7 @@ python setup.py install
 - any missing dependencies will be installed, may take a few seconds.
 
 Reqirements:
-------------
+
 Written for use with Python 3.7, not tested on other versions.
 In addition to time and json, annoPipeline requires:
 numpy >= 1.16.2
@@ -43,7 +41,7 @@ Typical usage often looks like this::
 
 
 Problems Solved in 0.1
-======================
+
 
 Task 1
 -------
