@@ -43,6 +43,7 @@ geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 # annoPipeline will execute full annotation pipeline (see individual functions below). 
 df = ap.annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
 ```
+- ***ap.annoPipeline*** will default save annotation output to Excel file named by geneList symbols separated by '_'.
 
 ## v0.0.1 Functionality
 
@@ -50,7 +51,7 @@ df = ap.annoPipeline(geneList) # returns pandas df with annotations for gene and
 1.  From the MyGeneInfo API, use the “Gene query service" GET method to return details on a given list of human gene symbols.
 2.  From the returned json, parse out the “name", “symbol" and “entrezgene" values and print to screen
 
-Use queryGenes() like this::
+Use *queryGenes()*:
 ```python
 import annoPipeline as ap
 
@@ -64,7 +65,7 @@ l1 = ap.queryGenes(geneList) # returns list of dicts where keys are default myge
 2.	From the resulting json, collate up to 5 generif descriptions per gene
 3.	Write the results to an Excel spreadsheet with columns: gene_symbol, gene_name, entrez_id, generifs
 
-Use getAnno() like this::
+Use *getAnno()*:
 ```python
 import annoPipeline as ap
 
@@ -72,14 +73,14 @@ geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 l1 = ap.queryGenes(geneList)
 l2 = ap.getAnno(l1, saveExcel=True) # saveExcel defaults False
 ```
- - returns pandas df with genes and up to 5 generifs from mygene.info. 
- - defaults to **saveExcel=False**, if you want to write output to Excel must state **True**
-- if **True**, names Excel file as geneList symbols separated by '_'. 
+- returns pandas df with genes and up to 5 generifs from mygene.info. 
+- default **saveExcel**=*False*, to save output to Excel must state *True*
+- if *True*, Excel file will be named by geneList symbols separated by '_'. 
 
 ### Task 3:
 1.  Use the Pubmed IDs associated with the above generif content to extract additional bibliographic information.
 
-Use addBibs() like this::
+Use *addBibs()*:
 ```python
 import annoPipeline as ap
 
