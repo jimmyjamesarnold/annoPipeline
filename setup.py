@@ -16,10 +16,12 @@ setuptools.setup(
     license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
-        'Intended Audience :: Biologists',
+        'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
+        "Topic :: Scientific/Engineering :: Information Analysis",
+        "Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator"
     ],
     install_requires=[
         "numpy >= 1.16.2",

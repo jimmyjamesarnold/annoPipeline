@@ -1,0 +1,12 @@
+README.md
+setup.py
+annoPipeline/__init__.py
+annoPipeline/addBibs.py
+annoPipeline/getAnno.py
+annoPipeline/queryGenes.py
+annoPipeline.egg-info/PKG-INFO
+annoPipeline.egg-info/SOURCES.txt
+annoPipeline.egg-info/dependency_links.txt
+annoPipeline.egg-info/requires.txt
+annoPipeline.egg-info/top_level.txt
+test/__init__.py

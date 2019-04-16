@@ -34,7 +34,7 @@ Required dependencies will be installed if missing, may take a few seconds.
 
 ## Example usage:
 
-Execute the full annotation pipeline like this:
+Execute the full annotation pipeline on a list of gene symbols like this:
 ```python
 import annoPipeline as ap
 
@@ -45,6 +45,15 @@ geneList = ['CDK2', 'FGFR1', 'SLC6A4']
 df = ap.annoPipeline(geneList) # returns pandas df with annotations for gene and bibliographic info.
 ```
 - ***ap.annoPipeline*** will default save annotation output to Excel file named by geneList symbols separated by '_'.
+
+### Warning! 
+If querying a **single gene**, still pass as a list. For example:
+```python
+import annoPipeline as ap
+
+df = ap.annoPipeline(['CDK2']) # for single gene queries still include [] - will be fixed in later version
+```
+
 
 ## v0.0.1 Functionality
 
